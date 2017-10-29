@@ -1,12 +1,10 @@
 'use strict';
 
-const LOCALCACHE = require('./3.json');
 const co = require('co');
 const lodash = require('lodash');
 const http = require('got');
 const ROOT_URL = "https://www.youngliving.com"
 const fs = require('fs');
-const jsonic = require('jsonic');
 const CSV = require('fast-csv');
 const argparse = require('argparse');
 
@@ -83,8 +81,6 @@ function *_getProductUrl(cltr, type) {
 }
 
 function *_getProductCatalog(url) {
-
-    //return LOCALCACHE;
 
     var response = yield http.get(url);
     return JSON.parse(response.body);
