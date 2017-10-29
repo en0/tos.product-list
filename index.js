@@ -49,23 +49,21 @@ function *_main() {
         var rf = lodash.get(item, 'currency.roundFactor');
         var wp = lodash.get(item, 'wholesaleDisplayPrice', '0').toString();
         var rp = lodash.get(item, 'retailDisplayPrice', '0').toString();
+        var pv = lodash.get(item, 'pointValue', '0').toString();
 
-        var r = lodash.pick(item, [
-            'name',
-            'canPurchaseWithER',
-            'canPurchase',
-            'pointValue',
-            'partNumber',
-            'inStock',
-            'isNFR',
-        ]);
-
-        r.currency = lodash.get(item, 'currency.code');
-        r.wholesaleDisplayPrice = normalizePrice(wp, rf);
-        r.retailDisplayPrice = normalizePrice(rp, rf);
-        r.cultureCode = cultureCode;
-
-        csvStream.write(r);
+        csvStream.write({
+            "Part #": lodash.get(item, 'partNumber'),
+            "Product": lodash.get(item, 'name'),
+            "Market": cultureCode,
+            "In Stock": lodash.get(item, 'inStock'),
+            "Currency": lodash.get(item, 'currency.code'),
+            "Wholesale": normalizePrice(wp, rf),
+            "Retail": normalizePrice(rp, rf),
+            "PV": normalizePrice(pv, rf),
+            "Can Purchase": lodash.get(item, 'canPurchase'),
+            "Can Purchase With ER": lodash.get(item, 'canPurchaseWithER'),
+            "Is NFR": lodash.get(item, 'isNFR'),
+        });
     }
 
     csvStream.end();
