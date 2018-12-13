@@ -61,8 +61,10 @@ function *_main() {
             "Retail": normalizePrice(rp, rf),
             "PV": normalizePrice(pv, rf),
             "Can Purchase": lodash.get(item, 'canPurchase'),
-            "Can Purchase With ER": lodash.get(item, 'canPurchaseWithER'),
+            "Can Purchase With ER Points": lodash.get(item, 'canPurchaseWithER'),
             "Is NFR": lodash.get(item, 'isNFR'),
+            "Can Include on ER Order": lodash.get(item, 'canAddToAutoship'),
+            "Exclusive to ER Order": lodash.get(item, 'allowErQtyIncrease'),
         });
     }
 

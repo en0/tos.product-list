@@ -20,4 +20,6 @@ echo Report Runtime: $(date "+%R %D %Z")
 echo Output File: $OUTPUT
 echo Public URL: $PUBLIC
 
-echo $PUBLIC | xclip -i -sel clip
+open "https://docs.google.com/spreadsheets/d/1i2Zabd85hTWyJJX0RXcdAwyRmICzQVKNF0arbZ8bXe4/edit#gid=409052318"
+echo $PUBLIC | pbcopy
+# echo $PUBLIC | xclip -i -sel clip
